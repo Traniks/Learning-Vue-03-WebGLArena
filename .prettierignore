@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+dist/
+
+# Build outputs
+build/
+.output/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated files
+*.d.ts
+coverage/
+.nyc_output/
+
+# Git
+.git/
