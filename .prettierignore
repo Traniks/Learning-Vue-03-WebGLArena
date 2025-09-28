@@ -18,6 +18,9 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
+# HTML files (preserve DOCTYPE format)
+index.html
+
 # IDE files
 .vscode/
 .idea/
