@@ -21,6 +21,14 @@ pnpm-lock.yaml
 # HTML files (preserve DOCTYPE format)
 index.html
 
+# Unity WebGL files (preserve original formatting)
+public/unity/
+*.loader.js
+*.framework.js
+*.wasm
+*.unityweb
+*.data
+
 # IDE files
 .vscode/
 .idea/
