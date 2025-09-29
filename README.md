@@ -1,6 +1,6 @@
-# AngryBots - Web3 Gaming Revolution
+# UnityOnWeb - WebGL Gaming Platform
 
-A cutting-edge single-page application for the AngryBots game, built with Vue 3, TypeScript, and Tailwind CSS. Experience intense robot combat with Unity WebGL integration and blockchain technology.
+A cutting-edge single-page application built with Vue 3, TypeScript, and Tailwind CSS. Experience seamless Unity WebGL games in your browser with modern web technologies and blockchain integration.
 
 ## 🛠️ Tech Stack
 
@@ -25,8 +25,8 @@ A cutting-edge single-page application for the AngryBots game, built with Vue 3,
 ```
 src/
 ├── components/
-│   ├── Header.vue          # Game title and social links
-│   ├── Description.vue     # Game info and contract address
+│   ├── Header.vue          # Platform title and social links
+│   ├── Description.vue     # Platform info and contract address
 │   ├── GameSection.vue     # Unity game container
 │   └── Footer.vue          # Footer with links
 ├── utils/
