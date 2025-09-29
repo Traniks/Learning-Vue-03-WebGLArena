@@ -18,31 +18,29 @@
 </script>
 
 <template>
-  <section class="py-16 px-4 sm:px-6 lg:px-8">
+  <section class="py-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-8">
-        <h2
-          class="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent">
-          ANGRYBOTS
+      <div class="text-center mb-6 sm:mb-8">
+        <h2 class="text-4xl sm:text-5xl font-bold mb-6 text-white">
+          Play
+          <span class="text-[#7acfb5]">$ANGRY</span>
+          Bots and earn coins
         </h2>
       </div>
 
-      <div class="text-center mb-12">
-        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
+      <div class="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
+        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6">
           Enter the ultimate battle arena where metal warriors clash in explosive combat. AngryBots combines intense
           gameplay with blockchain technology, creating an immersive gaming experience where every victory counts.
         </p>
-        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
+        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6">
           Fight, earn, and dominate in this revolutionary Web3 gaming ecosystem powered by cutting-edge Unity
           technology.
         </p>
       </div>
 
-      <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-        <h3
-          class="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-          Contract Address
-        </h3>
+      <div class="rounded-2xl">
+        <h3 class="text-2xl font-bold text-center mb-6 text-[#7acfb5]">Contract Address</h3>
 
         <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
           <div class="relative flex-1 max-w-md">
@@ -58,7 +56,7 @@
 
           <button
             @click="copyAddress"
-            class="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500/50 shadow-lg">
+            class="px-6 py-3 bg-[#7acfb5] hover:bg-[#6bb8a5] text-slate-900 font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#7acfb5]/50 shadow-lg hover:shadow-[0_0_20px_#7acfb5]">
             {{ copied ? 'Copied!' : 'Copy' }}
           </button>
         </div>

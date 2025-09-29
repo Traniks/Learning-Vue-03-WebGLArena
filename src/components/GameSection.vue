@@ -74,8 +74,8 @@
 </script>
 
 <template>
-  <section class="py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-6xl mx-auto">
+  <section class="py-8 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div :class="{ 'max-w-4xl mx-auto': !isFullscreen }">
       <div class="relative">
         <div
           class="relative bg-black rounded-2xl overflow-hidden shadow-2xl"
@@ -112,12 +112,13 @@
                 <div class="text-center">
                   <button
                     @click="startGame"
-                    class="group relative px-12 py-6 bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white font-bold text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                    class="group relative px-12 py-6 bg-[#7acfb5] hover:bg-[#6bb8a5] text-slate-900 font-bold text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[0_0_30px_#7acfb5]"
                     :disabled="gameLoading">
                     <div v-if="gameLoading" class="flex items-center gap-3">
                       <div class="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
                       Loading...
                     </div>
+
                     <div v-else class="flex items-center gap-3">
                       <svg
                         class="w-8 h-8 group-hover:translate-x-1 transition-transform"
@@ -135,7 +136,7 @@
                     <p class="text-red-300 text-sm">{{ gameError }}</p>
                     <button
                       @click="gameError = ''"
-                      class="mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors">
+                      class="mt-2 px-4 py-2 bg-[#7acfb5] hover:bg-[#6bb8a5] text-slate-900 text-sm rounded transition-colors hover:shadow-[0_0_15px_#7acfb5]">
                       Попробовать снова
                     </button>
                   </div>
@@ -157,11 +158,13 @@
             class="absolute inset-0 bg-black/80 flex items-center justify-center backdrop-blur-sm">
             <div class="text-center">
               <div
-                class="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mb-4 mx-auto"></div>
+                class="w-16 h-16 border-4 border-[#7acfb5] border-t-transparent rounded-full animate-spin mb-4 mx-auto"
+                style="box-shadow: 0 0 20px #7acfb5"></div>
               <p class="text-white text-xl font-semibold">Loading AngryBots...</p>
               <div class="mt-4 w-64 bg-gray-700 rounded-full h-2">
                 <div
-                  class="bg-gradient-to-r from-orange-500 to-red-600 h-2 rounded-full transition-all duration-300"
+                  class="bg-[#7acfb5] h-2 rounded-full transition-all duration-300"
+                  style="box-shadow: 0 0 10px #7acfb5"
                   :style="{ width: loadingProgress + '%' }"></div>
               </div>
               <p class="text-gray-300 mt-2">{{ Math.round(loadingProgress) }}%</p>
@@ -181,7 +184,7 @@
   .game-container {
     aspect-ratio: 16/9;
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
   }
 
@@ -193,9 +196,7 @@
   }
 
   .game-placeholder {
-    background:
-      radial-gradient(ellipse at center, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
-      linear-gradient(45deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    background: linear-gradient(to bottom right, #111827, #000000, #1f2937);
   }
 
   :deep(.unity-footer),
