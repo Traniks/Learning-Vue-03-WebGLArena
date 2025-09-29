@@ -6,7 +6,6 @@ A cutting-edge single-page application for the AngryBots game, built with Vue 3,
 
 - **Vue 3** - Progressive JavaScript framework
 - **TypeScript** - Type-safe development
-- **Pinia** - State management
 - **Tailwind CSS** - Utility-first CSS framework
 - **Vite** - Fast build tool and dev server
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+  import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue'
   import { loadUnity, unityConfig, type UnityInstance } from '@/utils/unityLoader'
 
   const isFullscreen = ref(false)
@@ -8,6 +8,15 @@
   const loadingProgress = ref(0)
   const gameError = ref('')
   let unityInstance: UnityInstance | null = null
+
+  // Детекция мобильного устройства
+  const isMobile = computed(() => {
+    if (typeof window === 'undefined') return false
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+      window.innerWidth <= 768
+    )
+  })
 
   const toggleFullscreen = () => {
     isFullscreen.value = !isFullscreen.value
@@ -76,6 +85,23 @@
 <template>
   <section class="py-8 sm:py-16 px-4 sm:px-6 lg:px-8">
     <div :class="{ 'max-w-4xl mx-auto': !isFullscreen }">
+      <!-- Mobile Warning Banner (before game) -->
+      <div v-if="isMobile" class="mb-6 p-4 bg-[#7acfb5]/10 border border-[#7acfb5]/30 rounded-lg">
+        <div class="flex items-center gap-3 mb-2">
+          <svg class="w-5 h-5 text-[#7acfb5] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <h4 class="text-[#7acfb5] font-semibold">Best Experience on Desktop</h4>
+        </div>
+        <p class="text-gray-400 text-sm">
+          For optimal gameplay with full controls and graphics, visit us on a desktop computer.
+        </p>
+      </div>
+
       <div class="relative">
         <!-- Fullscreen Overlay -->
         <Transition name="overlay">
@@ -85,8 +111,56 @@
         </Transition>
 
         <div class="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
-          <!-- Game Content -->
-          <div class="game-container relative" :class="{ 'fullscreen-game': isFullscreen }">
+          <!-- Mobile Warning -->
+          <div v-if="isMobile" class="game-container relative">
+            <div class="bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-8">
+              <div class="text-center max-w-md">
+                <div class="mb-6">
+                  <svg
+                    class="w-16 h-16 mx-auto text-[#7acfb5] mb-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  <h3 class="text-2xl font-bold text-white mb-2">Mobile Device Detected</h3>
+                </div>
+
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                  AngryBots is optimized for desktop experience. For the best gameplay, please visit us on a computer
+                  with keyboard and mouse.
+                </p>
+
+                <div class="space-y-4">
+                  <div class="flex items-center justify-center gap-3 text-[#7acfb5]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Better graphics performance</span>
+                  </div>
+                  <div class="flex items-center justify-center gap-3 text-[#7acfb5]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Full keyboard & mouse controls</span>
+                  </div>
+                  <div class="flex items-center justify-center gap-3 text-[#7acfb5]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Immersive fullscreen mode</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Game Content (Desktop) -->
+          <div v-else class="game-container relative" :class="{ 'fullscreen-game': isFullscreen }">
             <!-- Fullscreen Button -->
             <button
               @click="toggleFullscreen"

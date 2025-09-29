@@ -3,9 +3,9 @@
 <template>
   <header class="relative overflow-hidden py-6 px-4 sm:px-6 lg:px-8 bg-gray-900/80 border-b border-gray-700/50">
     <div class="relative max-w-7xl mx-auto text-center flex justify-between items-center">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black">
-        <span class="text-[#7acfb5]">ANGRY</span>
-        <span class="text-[#7acfb5]">BOTS</span>
+      <h1
+        class="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#00ffcc] via-[#7acfb5] to-[#00d4aa] bg-clip-text text-transparent">
+        ANGRY BOTS
       </h1>
 
       <div class="flex gap-6 justify-center">
