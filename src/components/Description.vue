@@ -1,85 +1,104 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+  import { ref, computed } from 'vue'
+  import { CONTRACT_ADDRESS, truncateAddress, copyToClipboard } from '../utils/contract'
 
-// Contract address (placeholder - replace with real address)
-const contractAddress = ref('0xAbC8053076fb10598E11e2F71C2f250162E49d73')
-const copied = ref(false)
+  const copied = ref(false)
 
-// Truncate address for display
-const truncatedAddress = computed(() => {
-  const addr = contractAddress.value
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`
-})
+  const truncatedAddress = computed(() => truncateAddress(CONTRACT_ADDRESS))
 
-// Copy to clipboard function
-const copyAddress = async () => {
-  try {
-    await navigator.clipboard.writeText(contractAddress.value)
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 2000)
-  } catch (err) {
-    console.error('Failed to copy address:', err)
+  const copyAddress = async () => {
+    const success = await copyToClipboard(CONTRACT_ADDRESS)
+    if (success) {
+      copied.value = true
+      setTimeout(() => {
+        copied.value = false
+      }, 2000)
+    }
   }
-}
 </script>
 
 <template>
-  <section class="py-16 px-4 sm:px-6 lg:px-8">
+  <section class="py-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
-      <!-- Description Text -->
-      <div class="text-center mb-12">
-        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
-          Enter the ultimate battle arena where metal warriors clash in explosive combat. 
-          AngryBots combines intense gameplay with blockchain technology, creating an 
-          immersive gaming experience where every victory counts.
+      <div class="text-center mb-6 sm:mb-8">
+        <h2 class="text-4xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">
+          Play
+          <span class="bg-gradient-to-r from-[#00ffcc] via-[#7acfb5] to-[#00d4aa] bg-clip-text text-transparent">
+            $ANGRY
+          </span>
+          Bots and earn coins
+        </h2>
+      </div>
+
+      <div class="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
+        <p class="text-base sm:text-lg md:text-lg lg:text-xl text-gray-300 leading-relaxed mb-6 font-medium">
+          Enter the ultimate battle arena where metal warriors clash in explosive combat. AngryBots combines intense
+          gameplay with blockchain technology, creating an immersive gaming experience where every victory counts.
         </p>
-        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
-          Fight, earn, and dominate in this revolutionary Web3 gaming ecosystem 
-          powered by cutting-edge Unity technology and smart contract integration.
+        <p class="text-sm sm:text-base md:text-base lg:text-lg text-gray-400 leading-relaxed mb-4 sm:mb-6">
+          Fight, earn, and dominate in this revolutionary Web3 gaming ecosystem powered by cutting-edge Unity
+          technology.
         </p>
       </div>
-      
-      <!-- Contract Address Section -->
-      <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-        <h3 class="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+
+      <div class="rounded-2xl">
+        <h4
+          class="text-xl sm:text-2xl font-bold text-center mb-6 bg-gradient-to-r from-[#00ffcc] via-[#7acfb5] to-[#00d4aa] bg-clip-text text-transparent">
           Contract Address
-        </h3>
-        
-        <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <!-- Contract Address Input -->
+        </h4>
+
+        <div class="flex gap-2 items-center justify-center">
           <div class="relative flex-1 max-w-md">
             <input
               type="text"
               :value="truncatedAddress"
               readonly
-              class="w-full px-4 py-3 bg-gray-900/80 border border-gray-600 rounded-lg text-gray-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50"
-            >
+              class="w-full px-4 py-3 bg-gray-900/80 border border-gray-600 rounded-lg text-gray-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#7acfb5]/50" />
             <div class="absolute inset-y-0 right-3 flex items-center">
               <span class="text-gray-500 text-xs">CA</span>
             </div>
           </div>
-          
-          <!-- Copy Button -->
+
           <button
             @click="copyAddress"
-            class="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500/50 shadow-lg"
-          >
-            {{ copied ? 'Copied!' : 'Copy' }}
+            class="p-3 bg-[#7acfb5] hover:bg-[#6bb8a5] text-slate-900 font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#7acfb5]/50 shadow-lg hover:shadow-[0_0_20px_#7acfb5]">
+            <!-- Copy Icon -->
+            <svg
+              v-if="!copied"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <!-- Check Icon -->
+            <svg
+              v-else
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
           </button>
         </div>
-        
+
         <!-- Full Address Display (Mobile) -->
-        <div class="mt-4 sm:hidden">
+        <!-- <div class="mt-4 sm:hidden">
           <p class="text-xs text-gray-500 text-center font-mono break-all">
-            {{ contractAddress }}
+            {{ contractStore.contractAddress }}
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
